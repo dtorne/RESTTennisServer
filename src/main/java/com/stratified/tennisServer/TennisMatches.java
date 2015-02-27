@@ -1,4 +1,4 @@
-package com.strata.tennisServer;
+package com.stratified.tennisServer;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -49,7 +49,7 @@ public class TennisMatches {
     
      /**
      * Method HTTP GET request
-     * Given an id match in the path of the url ex http://localhost:8080/webapp/tennismatches/1
+     * Given an id match in the path of the url ex http://localhost:8080/tennismatches/1
      * it returns the sets, games and points of every player, their names, status of match and duration of game
      *
      * @param idMatch
@@ -60,7 +60,13 @@ public class TennisMatches {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String statusMatch(@PathParam("idMatch") String idMatch) {
-        return "";
+        return idMatch;
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String wellcome() {
+        return "Wellcome to tennis server";
     }
     
     
