@@ -53,7 +53,6 @@ public class TennisMatches {
      * it returns the sets, games and points of every player, their names, status of match and duration of game
      *
      * @param idMatch
-     * @param playerScoring
      * @return Success if updated correctly
      */
     @Path("{idMatch}")

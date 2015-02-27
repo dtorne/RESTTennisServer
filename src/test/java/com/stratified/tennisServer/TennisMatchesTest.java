@@ -5,14 +5,10 @@
  */
 package com.stratified.tennisServer;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import javax.ws.rs.core.Application;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
@@ -30,7 +26,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import javax.xml.ws.soap.AddressingFeature.Responses;
 
 import org.glassfish.jersey.client.ClientConfig;
 
@@ -90,10 +85,6 @@ public class TennisMatchesTest extends JerseyTest {
         String expResult = "";
         String result = instance.addGame("Peter", "John");
         assertEquals(expResult, result);
-
-//        String responseMsg = target().path("tennismatches").request().get(String.class);
-//
-//        assertEquals("Hello, Heroku!", responseMsg);
     }
 
     /**
@@ -137,10 +128,7 @@ public class TennisMatchesTest extends JerseyTest {
         
         assertEquals("{\"id\":3424,\"player1\":\"Anna\",\"player2\":\"Sandra\",\"status\":\"ongoing\",\"duration\":120,\"score\":\"setsgamesandpoints\"}"
                 ,responseTest2.toString());
-        
-        
-        
-        
+           
     }
 
     @Test
