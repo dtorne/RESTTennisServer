@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 
 
 import java.net.URI;
+import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -28,6 +29,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.ClientConfig;
+import static org.mockito.Mockito.*;
+
 
 /**
  *
@@ -112,20 +115,23 @@ public class TennisMatchesTest extends JerseyTest {
         logger.debug("statusMatch");
         TennisMatches instance = new TennisMatches();
         String expResult = "";
-        String result = instance.statusMatch("34442");
         
         //Test case match id does not exist
         //Responds 404 error not found
-        final Response responseTest1 = target.path("1111").request()
+        final Response responseTest1 = target.path("34442").request()
                 .accept(MediaType.APPLICATION_JSON).get(Response.class);
         assertEquals(404,responseTest1.getStatus());
         
         //Test case match id does not exist
         //Responds a predifined information for using 3424
         //TODO We mock the db connection with this values on the db
-        final Response responseTest2 = target.path("11111").request()
+        final Response responseTest2 = target.path("3424").request()
                 .accept(MediaType.APPLICATION_JSON).get(Response.class);
         
+     
+       logger.debug(responseTest2.toString());
+
+       String result = responseTest2.toString();
         assertEquals("{\"id\":3424,\"player1\":\"Anna\",\"player2\":\"Sandra\",\"status\":\"ongoing\",\"duration\":120,\"score\":\"setsgamesandpoints\"}"
                 ,responseTest2.toString());
            
@@ -135,10 +141,11 @@ public class TennisMatchesTest extends JerseyTest {
     public void testWellcome() {       
 
         final String resMsg = target.request()
-                .accept(MediaType.APPLICATION_JSON).get(Response.class)
+                .accept(MediaType.TEXT_PLAIN).get(Response.class)
                 .toString();
 
         logger.debug("Wellocme test");
+
         assertEquals("Wellcome to tennis server", resMsg);
     }
 
